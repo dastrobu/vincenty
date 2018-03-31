@@ -1,4 +1,4 @@
-# geodesics
+# vincenty
 
 Solver for the inverse geodesic problem in Swift.
 
@@ -6,7 +6,7 @@ The inverse geodesic problem must be solved to compute the distance between two 
 ellipsoid in general. The generalization to ellipsoids, which are not oblate spheroids is not further considered here, 
 hence the term ellipsoid will be used synonymous with oblate spheroid.
 
-The distance between two points is also know as the 
+The distance between two points is also known as the 
 [Vincenty distance](https://en.wikipedia.org/wiki/Vincenty's_formulae).
 
 Here is an example to compute the distance between two points (the poles in this case) on the 
@@ -15,7 +15,7 @@ Here is an example to compute the distance between two points (the poles in this
     import geodesics
     let d = try distance((lat: Double.pi / 2,lon: 0), (lat: -Double.pi / 2, lon: 0))
     
-and that it. 
+and that's it. 
 
 ## Implementation Details
 
@@ -35,7 +35,7 @@ Convergence and the accuracy of the result can be controlled via two parameters.
 By default the 
 [WGS 84 ellipsoid](https://en.wikipedia.org/wiki/World_Geodetic_System)
 is employed, but different parameters can be specified, e.g. for the 
-[GRS 80 ellipsoid](https://en.wikipedia.org/wiki/GRS_80)
+[GRS 80 ellipsoid](https://en.wikipedia.org/wiki/GRS_80).
 
     try distance((lat: Double.pi / 2, lon: 0), (lat: -Double.pi / 2, lon: 0), 
                  ellipsoid (a: 6378137.0, f: 1/298.257222100882711))
