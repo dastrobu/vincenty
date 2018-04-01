@@ -11,6 +11,7 @@ matrix:
       compiler: clang
 
 before_install:
+  - uname -a
   - |
     if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
       brew upgrade swiftlint
@@ -32,7 +33,6 @@ before_install:
       swift --version
     fi
 script:
-  - uname -a
   - swift build
   - swift test
   - |
