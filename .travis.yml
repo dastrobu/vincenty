@@ -22,8 +22,11 @@ before_install:
     if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
       export SWIFT_VERSION=4.1
       # download swift
-      curl https://swift.org/builds/swift-$SWIFT_VERSION-release/ubuntu1404/swift-$SWIFT_VERSION-RELEASE/swift-$SWIFT_VERSION-RELEASE-ubuntu14.04.tar.gz -s | tar xz -C ./ &> /dev/null;
-      # set env
+      SWIFT_ARCHIVE=swift-$SWIFT_VERSION-RELEASE-ubuntu14.04.tar.gz
+      curl https://swift.org/builds/swift-$SWIFT_VERSION-release/ubuntu1404/swift-$SWIFT_VERSION-RELEASE/$SWIFT_ARCHIVE -s -o $SWIFT_ARCHIVE
+      tar xf $SWIFT_ARCHIVE
+      rm -f $SWIFT_ARCHIVE
+      # setup env for swift
       export SWIFT_HOME=$(pwd)/swift-$SWIFT_VERSION-RELEASE-ubuntu14.04/usr/bin/
       export PATH=$SWIFT_HOME:$PATH
       # check swift version
@@ -35,5 +38,5 @@ script:
   - |
     # lint on osx only (no need to do this on every platform)
     if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
-      swift lint;
+      swiftlint
     fi
