@@ -2,7 +2,6 @@ import XCTest
 @testable import vincenty
 
 // some constants
-
 private let zero = (lat: 0.0, lon: 0.0)
 private let northPole = (lat: Double.pi / 2, lon: 0.0)
 private let southPole = (lat: -Double.pi / 2, lon: 0.0)
