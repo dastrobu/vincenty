@@ -47,9 +47,5 @@ script:
   - |
     # lint on osx only (no need to do this on every platform)
     if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
-      swiftlint --reporter json > swiftlint.json
-      cat swiftlint.json
-      # check for warnings as well
-      grep "Warning" swiftlint.json > /dev/null && echo "linting failed" && exit 1;
-      echo "linting passed"
+      swiftlint --strict
     fi
