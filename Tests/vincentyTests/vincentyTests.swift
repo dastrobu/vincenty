@@ -81,10 +81,12 @@ final class VincentyTests: XCTestCase {
         XCTAssertEqual(try! distance(x, y), 111319.491, accuracy: delta)
     }
 
+#if !os(macOS)
     static var allTests = [
         ("testGrs80", testGrs80),
         ("testPoles", testPoles),
         ("testShortcutForEqualPoints", testShortcutForEqualPoints),
         ("testVincentyDistance", testVincentyDistance),
     ]
+#endif
 }
