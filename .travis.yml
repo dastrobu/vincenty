@@ -14,6 +14,8 @@ before_install:
   - uname -a
   - |
     if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
+      # update silently
+      brew update >/dev/null
       brew upgrade swiftlint
       # check swift version
       swift --version
