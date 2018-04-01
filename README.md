@@ -2,7 +2,7 @@
 
 [![Swift Version](https://img.shields.io/badge/swift-4.1-blue.svg)](https://swift.org) 
 ![Platform](https://img.shields.io/badge/platform-osx--64|linux--64-lightgrey.svg)
-[![Build Travis-CI Status](https://travis-ci.org/dastrobu/vincenty.svg?branch=master)](https://travis-ci.org/dastrobu/vincenty.svg?branch=master) 
+[![Build Travis-CI Status](https://travis-ci.org/dastrobu/vincenty.svg?branch=master)](https://travis-ci.org/dastrobu/vincenty) 
 
 Solver for the inverse geodesic problem in Swift.
 
