@@ -1,7 +1,7 @@
 import XCTest
 
-import GeodesicsTests
+import VincentyTests
 
 var tests = [XCTestCaseEntry]()
-tests += GeodesicsTests.allTests()
+tests += VincentyTests.allTests()
 XCTMain(tests)

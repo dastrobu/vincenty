@@ -1,16 +1,17 @@
-# make sudo to enforce running on a real linux VM and not in a container on a macOS machine
+# make sudo to enforce running on a real linux VM and not in a container on a macOS VM.
+sudo: required
+# do not use swift as language, since otherwise the build always runs on a macOS VM.
 language: c
 
 matrix:
   include:
     - os: linux
-      sudo: required
       dist: trusty # Ubuntu 14.04 LTS
       compiler: clang
 
-#    - os: osx
-#      osx_image: xcode9.3beta
-#      compiler: clang
+    - os: osx
+      osx_image: xcode9.3beta
+      compiler: clang
 
 before_install:
   - uname -a
