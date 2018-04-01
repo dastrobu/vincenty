@@ -82,8 +82,9 @@ final class VincentyTests: XCTestCase {
     }
 
     static var allTests = [
-        ("testShortcutForEqualPoints", testShortcutForEqualPoints),
-        ("testPoles", testPoles),
         ("testGrs80", testGrs80),
+        ("testPoles", testPoles),
+        ("testShortcutForEqualPoints", testShortcutForEqualPoints),
+        ("testVincentyDistance", testVincentyDistance),
     ]
 }

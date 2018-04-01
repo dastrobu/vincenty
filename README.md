@@ -1,5 +1,7 @@
 # vincenty
 
+[![Build Travis-CI Status](https://travis-ci.org/dastrobu/vincenty.png?branch=master)](https://travis-ci.org/dastrobu/vincenty.png?branch=master) 
+
 Solver for the inverse geodesic problem in Swift.
 
 The inverse geodesic problem must be solved to compute the distance between two points on an oblate spheroid, or 
