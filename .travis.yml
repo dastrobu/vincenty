@@ -1,3 +1,6 @@
+# make sudo to enforce running on a real linux VM and not in a container on a macOS machine
+sudo: true
+
 language: swift
 
 matrix:
