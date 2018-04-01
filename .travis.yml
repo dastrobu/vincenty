@@ -32,6 +32,7 @@ before_install:
       swift --version
     fi
 script:
+  - uname -a
   - swift build
   - swift test
   - |
