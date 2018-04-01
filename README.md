@@ -12,7 +12,7 @@ The distance between two points is also known as the
 Here is an example to compute the distance between two points (the poles in this case) on the 
 [WGS 84 ellipsoid](https://en.wikipedia.org/wiki/World_Geodetic_System).
 
-    import geodesics
+    import vincenty
     let d = try distance((lat: Double.pi / 2,lon: 0), (lat: -Double.pi / 2, lon: 0))
     
 and that's it. 
