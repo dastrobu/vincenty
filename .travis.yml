@@ -1,12 +1,14 @@
 language: swift
 
-os:
-  - linux
-  - osx
+matrix:
+  include:
+    - os: linux
+      dist: trusty
+      compiler: gcc
 
-compiler:
-  - gcc
-  - clang
+    - os: osx
+      osx_image: xcode9.3beta
+      compiler: clang
 
 before_install:
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew update; fi
