@@ -1,6 +1,6 @@
 import XCTest
 
-import vincentyTests
+@testable import vincentyTests
 
 var tests = [XCTestCaseEntry]()
 tests += VincentyTests.allTests()
