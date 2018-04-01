@@ -2,7 +2,6 @@ import XCTest
 @testable import vincenty
 
 // some constants
-
 private let zero = (lat: 0.0, lon: 0.0)
 private let northPole = (lat: Double.pi / 2, lon: 0.0)
 private let southPole = (lat: -Double.pi / 2, lon: 0.0)
@@ -81,9 +80,12 @@ final class VincentyTests: XCTestCase {
         XCTAssertEqual(try! distance(x, y), 111319.491, accuracy: delta)
     }
 
+#if !os(macOS)
     static var allTests = [
-        ("testShortcutForEqualPoints", testShortcutForEqualPoints),
-        ("testPoles", testPoles),
         ("testGrs80", testGrs80),
+        ("testPoles", testPoles),
+        ("testShortcutForEqualPoints", testShortcutForEqualPoints),
+        ("testVincentyDistance", testVincentyDistance),
     ]
+#endif
 }

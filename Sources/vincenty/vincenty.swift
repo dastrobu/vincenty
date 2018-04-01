@@ -12,6 +12,9 @@ public enum ConvergenceError: Error {
 /// [WGS 84 ellipsoid](https://en.wikipedia.org/wiki/World_Geodetic_System) definition
 public let wgs84 = (a: 6378137.0, f: 1 / 298.257223563)
 
+/// π (for convenience)
+private let pi = Double.pi
+
 ///
 /// Compute the distance between two points on an ellipsoid.
 /// The ellipsoid parameters default to the WGS-84 parameters.
@@ -38,10 +41,10 @@ public func distance(_ x: (lat: Double, lon: Double),
     assert(tol > 0, "tol '\(tol)' ≤ 0")
 
     // validate lat and lon values
-    assert(x.lat >= -Double.pi / 2 && x.lat <= Double.pi / 2, "x.lat '\(x.lat)' outside [-π/2, π]")
-    assert(y.lat >= -Double.pi / 2 && y.lat <= Double.pi / 2, "y.lat '\(y.lat)' outside [-π/2, π]")
-    assert(x.lon >= -Double.pi && x.lon <= Double.pi, "x.lon '\(y.lon)' outside [-π, π]")
-    assert(y.lon >= -Double.pi && y.lon <= Double.pi, "y.lon '\(y.lon)' outside [-π, π]")
+    assert(x.lat >= -pi / 2 && x.lat <= pi / 2, "x.lat '\(x.lat)' outside [-π/2, π]")
+    assert(y.lat >= -pi / 2 && y.lat <= pi / 2, "y.lat '\(y.lat)' outside [-π/2, π]")
+    assert(x.lon >= -pi && x.lon <= pi, "x.lon '\(y.lon)' outside [-π, π]")
+    assert(y.lon >= -pi && y.lon <= pi, "y.lon '\(y.lon)' outside [-π, π]")
 
     // shortcut for zero distance
     if x == y {
