@@ -11,9 +11,24 @@ matrix:
       compiler: clang
 
 before_install:
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew update; fi
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew upgrade swiftlint; fi
-
+  - >
+  if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
+    brew update;
+    brew upgrade swiftlint;
+    # check swift version
+    swift --version
+    fi
+  - >
+  if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
+    export SWIFT_VERSION=4.1
+    # download swift
+    curl https://swift.org/builds/swift-$SWIFT_VERSION-release/ubuntu1404/swift-$SWIFT_VERSION-RELEASE/swift-$SWIFT_VERSION-RELEASE-ubuntu14.04.tar.gz -s | tar xz -C ./ &> /dev/null;
+    # set env
+    export SWIFT_HOME=$(pwd)/swift-$SWIFT_VERSION-RELEASE-ubuntu14.04/usr/bin/
+    export PATH=$SWIFT_HOME:$PATH
+    # check swift version
+    swift --version
+    fi
 script:
   - swift build
   - swift test
