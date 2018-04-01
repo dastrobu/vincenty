@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "geodesic",
+        "repositoryURL": "https://github.com/dastrobu/geodesic.git",
+        "state": {
+          "branch": null,
+          "revision": "a96f2de983fa4a603281668adc4b92fe7b6aba95",
+          "version": "1.0.1"
+        }
+      }
+    ]
+  },
+  "version": 1
+}
