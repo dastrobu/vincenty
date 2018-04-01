@@ -13,7 +13,7 @@ public enum ConvergenceError: Error {
 public let wgs84 = (a: 6378137.0, f: 1 / 298.257223563)
 
 /// π (for convenience)
-let pi = Double.pi
+private let pi = Double.pi
 
 ///
 /// Compute the distance between two points on an ellipsoid.
