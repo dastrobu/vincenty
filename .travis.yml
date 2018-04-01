@@ -32,3 +32,8 @@ before_install:
 script:
   - swift build
   - swift test
+  - >
+  # lint on osx only (no need to do this on every platform)
+  if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
+    swift lint;
+    fi
