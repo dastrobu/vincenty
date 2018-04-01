@@ -1,11 +1,10 @@
 # make sudo to enforce running on a real linux VM and not in a container on a macOS machine
-sudo: required
 language: swift
-dist: trusty # Ubuntu 14.04 LTS
 
 matrix:
   include:
     - os: linux
+      sudo: required
       dist: trusty # Ubuntu 14.04 LTS
       compiler: clang
 
