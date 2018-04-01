@@ -4,7 +4,7 @@ matrix:
   include:
     - os: linux
       dist: trusty # Ubuntu 14.04 LTS
-      compiler: gcc
+      compiler: clang
 
     - os: osx
       osx_image: xcode9.3beta
@@ -37,5 +37,7 @@ script:
   - |
     # lint on osx only (no need to do this on every platform)
     if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
-      swiftlint || exit 1
+      swiftlint --reporter json > swiftlint.json
+      # check for warnings as well
+      grep "Warning" swiftlint.json && exit 1;
     fi
