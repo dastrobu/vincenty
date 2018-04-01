@@ -41,5 +41,6 @@ script:
       swiftlint --reporter json > swiftlint.json
       cat swiftlint.json
       # check for warnings as well
-      grep "Warning" swiftlint.json && exit 1;
+      grep "Warning" swiftlint.json && echo "linting failed" && exit 1;
+      echo "linting passed"
     fi
