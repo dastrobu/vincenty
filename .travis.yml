@@ -1,46 +1,35 @@
 # make sudo to enforce running on a real linux VM and not in a container on a macOS VM.
 sudo: required
 # do not use swift as language, since otherwise the build always runs on a macOS VM.
-language: c
+language: generic
 dist: trusty # Ubuntu 14.04 LTS
 osx_image: xcode9.3beta
 
-matrix:
-  include:
-    - os: linux
-      compiler: clang
-      # testing with geodesic does not work with gcc, see known issue in geodesic package
-#    - os: linux
-#      compiler: gcc
-    - os: osx
-      compiler: clang
+compiler:
+  - clang
+# testing with geodesic does not work with gcc, see known issue in geodesic package
+  # - gcc
+
+os:
+  - linux
+  - osx
+
+env:
+  -  SWIFT_VERSION=4.0
+  -  SWIFT_VERSION=4.1
 
 before_install:
   - uname -a
   - |
-    if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
-      # update silently
-      brew update >/dev/null
-      brew upgrade swiftlint
-      # check swift version
-      swift --version
-    fi
-  - |
     if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
       sudo apt-get update
       sudo apt-get install clang-3.6
-      export SWIFT_VERSION=4.1
-      # download swift
-      SWIFT_ARCHIVE=swift-$SWIFT_VERSION-RELEASE-ubuntu14.04.tar.gz
-      curl https://swift.org/builds/swift-$SWIFT_VERSION-release/ubuntu1404/swift-$SWIFT_VERSION-RELEASE/$SWIFT_ARCHIVE -s -o $SWIFT_ARCHIVE
-      tar xf $SWIFT_ARCHIVE
-      rm -f $SWIFT_ARCHIVE
-      # setup env for swift
-      export SWIFT_HOME=$(pwd)/swift-$SWIFT_VERSION-RELEASE-ubuntu14.04/usr/bin/
-      export PATH=$SWIFT_HOME:$PATH
-      # check swift version
-      swift --version
     fi
+
+install:
+  - eval "$(curl -sL https://swiftenv.fuller.li/install.sh)"
+  - swift --version
+
 script:
   - swift build
   - swift test
