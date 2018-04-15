@@ -21,6 +21,22 @@ Here is an example to compute the distance between two points (the poles in this
     
 and that's it. 
 
+## Installation
+### Dependencies
+At least `clang-3.6` is required. On linux one might need to install it explicitly.
+There are no dependencies on macOS.
+    
+### Swift Package Manager
+
+    dependencies: [
+            .package(url: "https://github.com/dastrobu/vincenty.git", from: "1.0.0"),
+        ],
+
+## Cocoa Pods
+Make sure a valid deployment target is setup in the Podfile and add
+
+    pod 'vincenty', '~> 1'
+
 ## Implementation Details
 
 This is a simple implementation of Vincenty's formulae. It is not the most accurate or most 
