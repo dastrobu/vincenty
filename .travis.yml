@@ -2,22 +2,32 @@
 sudo: required
 # do not use swift as language, since otherwise the build always runs on a macOS VM.
 language: generic
-dist: trusty # Ubuntu 14.04 LTS
-osx_image: xcode10.2
+dist: bionic # Ubuntu 18.04
 
 compiler:
   - clang
-  # testing with geodesic does not work with gcc, see known issue in geodesic package
+  # currently it is not possible to compile with gcc
   # - gcc
 
-os:
-  - linux
-  - osx
+jobs:
+  include:
+    - os: linux
+      env: SWIFT_VERSION=5.0
+    - os: linux
+      env: SWIFT_VERSION=5.1
+    - os: osx
+      osx_image: xcode10.2
+      env: SWIFT_VERSION=4.0
+    - os: osx
+      osx_image: xcode10.2
+      env: SWIFT_VERSION=4.1
+    - os: osx
+      osx_image: xcode11.2
+      env: SWIFT_VERSION=5.0
+    - os: osx
+      osx_image: xcode11.2
+      env: SWIFT_VERSION=5.1
 
-env:
-  - SWIFT_VERSION=4.0
-  - SWIFT_VERSION=4.1
-  - SWIFT_VERSION=5.0
 
 before_install:
   - uname -a
