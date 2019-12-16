@@ -10,7 +10,7 @@ let package = Package(
             targets: ["vincenty"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/dastrobu/geodesic.git", from: "1.0.0"),
+        .package(url: "https://github.com/dastrobu/geodesic.git", from: "1.1.0"),
     ],
     targets: [
         .target(
