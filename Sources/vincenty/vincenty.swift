@@ -43,7 +43,7 @@ public func distance(_ x: (lat: Double, lon: Double),
     // validate lat and lon values
     assert(x.lat >= -pi / 2 && x.lat <= pi / 2, "x.lat '\(x.lat)' outside [-π/2, π]")
     assert(y.lat >= -pi / 2 && y.lat <= pi / 2, "y.lat '\(y.lat)' outside [-π/2, π]")
-    assert(x.lon >= -pi && x.lon <= pi, "x.lon '\(y.lon)' outside [-π, π]")
+    assert(x.lon >= -pi && x.lon <= pi, "x.lon '\(x.lon)' outside [-π, π]")
     assert(y.lon >= -pi && y.lon <= pi, "y.lon '\(y.lon)' outside [-π, π]")
 
     // shortcut for zero distance
