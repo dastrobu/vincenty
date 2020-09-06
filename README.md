@@ -1,7 +1,7 @@
 # vincenty
 
 [![Swift Version](https://img.shields.io/badge/swift-5.2-blue.svg)](https://swift.org) 
-![Platform](https://img.shields.io/badge/platform-osx--64|linux--64-lightgrey.svg)
+![Platform](https://img.shields.io/badge/platform-macOS|linux--64-lightgray.svg)
 [![Build Travis-CI Status](https://travis-ci.org/dastrobu/vincenty.svg?branch=master)](https://travis-ci.org/dastrobu/vincenty) 
 
 Solver for the inverse geodesic problem in Swift.
