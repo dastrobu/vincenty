@@ -30,9 +30,13 @@ There are no dependencies on macOS.
     
 ### Swift Package Manager
 
+```swift
+let package = Package(
     dependencies: [
-            .package(url: "https://github.com/dastrobu/vincenty.git", from: "1.0.0"),
-        ],
+        .package(url: "https://github.com/dastrobu/vincenty.git", from: "1.0.3"),
+    ]
+)
+```
 
 ## Cocoa Pods
 
