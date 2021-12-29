@@ -25,6 +25,13 @@ and that's it.
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 ## Table of Contents
 
+- [Installation](#installation)
+  - [Dependencies](#dependencies)
+  - [Swift Package Manager](#swift-package-manager)
+- [Cocoa Pods](#cocoa-pods)
+- [Implementation Details](#implementation-details)
+- [Convergence and Tolerance](#convergence-and-tolerance)
+- [WGS 84 and other Ellipsoids](#wgs-84-and-other-ellipsoids)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
