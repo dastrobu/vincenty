@@ -45,7 +45,31 @@ public struct VincentyResults {
 ///
 /// - Throws:
 ///   - `VincentyError.notConverged` if the distance computation does not converge within `maxIter` iterations.
-///   - `VincentyError.inputOutsideRange` if the input parameters are out of range
+public func distance(_ x: (lat: Double, lon: Double),
+                     _ y: (lat: Double, lon: Double),
+                     tol: Double = 1e-12,
+                     maxIter: UInt = 200,
+                     ellipsoid: (a: Double, f: Double) = wgs84) throws -> Double {
+    try vincentyCalculations(x, y, tol: tol, maxIter: maxIter, ellipsoid: ellipsoid).distance;
+}
+
+
+///
+/// Compute the distance between two points on an ellipsoid.
+/// The ellipsoid parameters default to the WGS-84 parameters.
+///
+/// - Parameters:
+///   - x: first point with latitude and longitude in radiant.
+///   - y: second point with latitude and longitude in radiant.
+///   - tol: tolerance for the computed distance (in meters)
+///   - maxIter: maximal number of iterations
+///   - a: first ellipsoid parameter in meters (defaults to WGS-84 parameter)
+///   - f: second ellipsoid parameter in meters (defaults to WGS-84 parameter)
+///
+/// - Returns: distance between `x` and `y` in meters. initial True Track in degrees, and final True Track in degrees.
+///
+/// - Throws:
+///   - `VincentyError.notConverged` if the distance computation does not converge within `maxIter` iterations.
 public func vincentyCalculations(_ x: (lat: Double, lon: Double),
                      _ y: (lat: Double, lon: Double),
                      tol: Double = 1e-12,
