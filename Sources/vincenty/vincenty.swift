@@ -20,11 +20,6 @@ public let wgs84 = (a: 6378137.0, f: 1 / 298.257223563)
 /// π (for convenience)
 private let pi = Double.pi
 
-public struct VincentyInverseResults {
-    var distance:Double = 0.0
-    var azimuths:(initialTrueTrack:Double, finalTrueTrack:Double)
-}
-
 ///
 /// Compute the distance between two points on an ellipsoid.
 /// The ellipsoid parameters default to the WGS-84 parameters.
@@ -71,7 +66,7 @@ public func solveInverse(_ x: (lat: Double, lon: Double),
                      tol: Double = 1e-12,
                      maxIter: UInt = 200,
                      ellipsoid: (a: Double, f: Double) = wgs84
-) throws -> VincentyInverseResults {
+) throws -> (distance:Double,azimuths:(Double,Double)) {
     
     assert(tol > 0, "tol '\(tol)' ≤ 0")
 
@@ -83,7 +78,7 @@ public func solveInverse(_ x: (lat: Double, lon: Double),
 
     // shortcut for zero distance
     if x == y {
-        return VincentyInverseResults(distance: 0.0, azimuths: (initialTrueTrack: 0.0, finalTrueTrack: 0.0))
+        return (distance: 0.0, azimuths: (0.0, 0.0))
     }
 
     // compute ellipsoid constants
@@ -171,7 +166,7 @@ public func solveInverse(_ x: (lat: Double, lon: Double),
     let initialTrueTrack = abs(distance) < Double.leastNonzeroMagnitude ? Double.nan : wrap2pi(a1)
     let finalTrueTrack = abs(distance) < Double.leastNonzeroMagnitude ? Double.nan : wrap2pi(a2)
     
-    return VincentyInverseResults(distance: distance, azimuths: (initialTrueTrack: initialTrueTrack, finalTrueTrack: finalTrueTrack))
+    return (distance: distance, azimuths: (initialTrueTrack, finalTrueTrack))
     
 }
 

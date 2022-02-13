@@ -102,24 +102,24 @@ final class VincentyTests: XCTestCase {
         //Test Cardinals
         x = (lat: 0.0, lon: 0.0)
         y = (lat: pi/2,lon: 0.0) //north pole
-        var results = try! vincenty.solveInverse(x, y)
-        XCTAssertEqual(results.azimuths.initialTrueTrack, 0.0, accuracy: delta)
-        XCTAssertEqual(results.azimuths.finalTrueTrack, 0.0, accuracy: delta)
+        var (_, azimuths: (initialTrueTrack, finalTrueTrack)) = try! vincenty.solveInverse(x, y)
+        XCTAssertEqual(initialTrueTrack, 0.0, accuracy: delta)
+        XCTAssertEqual(finalTrueTrack, 0.0, accuracy: delta)
 
         y = (lat: 0.0, lon: pi/2) //east
-        results = try! vincenty.solveInverse(x, y)
-        XCTAssertEqual(results.azimuths.initialTrueTrack, Double.pi/2, accuracy: delta)
-        XCTAssertEqual(results.azimuths.finalTrueTrack, Double.pi/2, accuracy: delta)
+        (_, azimuths: (initialTrueTrack, finalTrueTrack)) = try! vincenty.solveInverse(x, y)
+        XCTAssertEqual(initialTrueTrack, Double.pi/2, accuracy: delta)
+        XCTAssertEqual(finalTrueTrack, Double.pi/2, accuracy: delta)
            
         y = (lat: -pi/2,lon: 0.0) //south pole
-        results = try! vincenty.solveInverse(x, y)
-        XCTAssertEqual(results.azimuths.initialTrueTrack, Double.pi, accuracy: delta)
-        XCTAssertEqual(results.azimuths.finalTrueTrack, Double.pi, accuracy: delta)
+        (_, azimuths: (initialTrueTrack, finalTrueTrack)) = try! vincenty.solveInverse(x, y)
+        XCTAssertEqual(initialTrueTrack, Double.pi, accuracy: delta)
+        XCTAssertEqual(finalTrueTrack, Double.pi, accuracy: delta)
            
         y = (lat: 0.0,lon: -pi/2) //west
-        results = try! vincenty.solveInverse(x, y)
-        XCTAssertEqual(results.azimuths.initialTrueTrack, 3*Double.pi/2, accuracy: delta)
-        XCTAssertEqual(results.azimuths.finalTrueTrack, 3*Double.pi/2, accuracy: delta)
+        (_, azimuths: (initialTrueTrack, finalTrueTrack)) = try! vincenty.solveInverse(x, y)
+        XCTAssertEqual(initialTrueTrack, 3*Double.pi/2, accuracy: delta)
+        XCTAssertEqual(finalTrueTrack, 3*Double.pi/2, accuracy: delta)
         
     }
     
@@ -128,13 +128,28 @@ final class VincentyTests: XCTestCase {
     func testNavigationAccurracy() {
         
         var x: (lat: Double, lon: Double), y: (lat: Double, lon: Double)
-        var results: VincentyInverseResults
+
         //Urabi to Bumat
         x = (lat: (60+12/60).asRad, lon: (154+41.1/60).asRad)
         y = (lat: (61+50.1/60).asRad, lon: (160+33/60).asRad)
-        results = try! vincenty.solveInverse(x, y)
-        XCTAssertEqual(results.distance.inNm, 197, accuracy: fmsAcc)
-        XCTAssertEqual(results.azimuths.initialTrueTrack.asDegrees, 058, accuracy: fmsAcc)
+        var (distance, azimuths: (initialTrueTrack, _)) = try! vincenty.solveInverse(x, y)
+        XCTAssertEqual(distance.inNm, 197, accuracy: fmsAcc)
+        XCTAssertEqual(initialTrueTrack.asDegrees, 058, accuracy: fmsAcc)
+        
+       
+        //Dacey is N5933.6 / W12604.5
+        x = (lat: (59+33.6/60).asRad, lon: -(126+04.5/60).asRad)
+        //MCT is N5321.4 / W00215.7
+        y = (lat: (53+21.4/60).asRad, lon: -(2+15.7/60).asRad)
+        //TRK036T3507
+        (distance, azimuths: (initialTrueTrack, _)) = try! vincenty.solveInverse(x, y)
+        //XCTAssertEqual(distance.inNm, 3507, accuracy: fmsAcc) //FMS seems to be wrong in this case...
+        //http://www.gcmap.com/dist?P=N5933.6+W12604.5+-+N5321.4+W00215.7&DU=nm&DM=&SG=450&SU=kts
+        let gDist = geodesic.distance(x, y)
+        print("vincenty: \(distance), geodesic: \(gDist), delta: \(fabs(distance - gDist))")
+        XCTAssertEqual(distance, gDist, accuracy: 1e-3)
+        XCTAssertEqual(initialTrueTrack.asDegrees, 036, accuracy: fmsAcc)
+        
     }
     
 
@@ -181,7 +196,6 @@ final class VincentyTests: XCTestCase {
 
 #if !os(macOS)
     static var allTests = [
-        ("testLatLongCheck", testLatLongCheck),
         ("testAgainstGeodesic", testAgainstGeodesic),
         ("testFailOnNearlyAntipodalPoints", testFailOnNearlyAntipodalPoints),
         ("testGrs80", testGrs80),
