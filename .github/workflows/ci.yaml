@@ -13,8 +13,6 @@ jobs:
       matrix:
         swift-version:
           - "5.5"
-          - "5.4"
-          - "5.3"
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v2
@@ -27,11 +25,18 @@ jobs:
       matrix:
         swift-version:
           - "5.5"
+          - "5.4"
+          - "5.3"
+          - "5.2"
+          - "5.1"
           - "5.0"
-          - "4"
-          - "4.0"
     runs-on: ubuntu-latest
     container: swift:${{ matrix.swift-version }}
     steps:
       - uses: actions/checkout@v2
       - run: swift test
+  ios-build:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: xcodebuild -scheme vincenty -destination 'platform=iOS Simulator,name=iPhone 13'
