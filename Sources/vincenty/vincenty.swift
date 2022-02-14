@@ -41,7 +41,7 @@ public func distance(_ x: (lat: Double, lon: Double),
                      tol: Double = 1e-12,
                      maxIter: UInt = 200,
                      ellipsoid: (a: Double, f: Double) = wgs84) throws -> Double {
-    try solveInverse(x, y, tol: tol, maxIter: maxIter, ellipsoid: ellipsoid).distance;
+    return try solveInverse(x, y, tol: tol, maxIter: maxIter, ellipsoid: ellipsoid).distance;
 }
 
 
