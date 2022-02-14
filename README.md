@@ -19,7 +19,11 @@ Here is an example to compute the distance between two points (the poles in this
     import vincenty
     let d = try distance((lat: Double.pi / 2,lon: 0), (lat: -Double.pi / 2, lon: 0))
     
-and that's it. 
+To compute azimuths (also known as initial and final bearings) 
+
+    let (d, (a, b)) = try solveInverse((lat: Double.pi / 2,lon: 0), (lat: -Double.pi / 2, lon: 0))
+
+where `(a, b)` are the azimuths.
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
@@ -47,7 +51,7 @@ There are no dependencies on macOS.
 ```swift
 let package = Package(
     dependencies: [
-        .package(url: "https://github.com/dastrobu/vincenty.git", from: "1.0.4"),
+        .package(url: "https://github.com/dastrobu/vincenty.git", from: "1.1.0"),
     ]
 )
 ```

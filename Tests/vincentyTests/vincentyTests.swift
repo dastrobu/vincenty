@@ -13,10 +13,12 @@ private let pi: Double = Double.pi
 private func rad<T: BinaryFloatingPoint>(fromDegree d: T) -> T {
     return d * T.pi / 180
 }
+
 /// - Returns: radians converted to degrees
 private func deg<T: BinaryFloatingPoint>(fromRadian r: T) -> T {
     return r * 180 / T.pi
 }
+
 /// - Returns: meters converted to nautical miles
 private func nm<T: BinaryFloatingPoint>(fromMeters m: T) -> T {
     return m / 1852.0
@@ -39,7 +41,17 @@ private extension BinaryFloatingPoint {
 }
 
 final class VincentyTests: XCTestCase {
-    
+
+    /// example code as shown in the Readme.md
+    func testRreadmeExamples() {
+        do {
+            let d = try! vincenty.distance((lat: Double.pi / 2, lon: 0), (lat: -Double.pi / 2, lon: 0))
+        }
+        do {
+            let (d, (a, b)) = try! solveInverse((lat: Double.pi / 2, lon: 0), (lat: -Double.pi / 2, lon: 0))
+        }
+
+    }
 
     func testShortcutForEqualPoints() {
         // make sure, points are equal and not identical, to check if the shortcut works correctly
@@ -98,7 +110,7 @@ final class VincentyTests: XCTestCase {
         x = (lat: 0.asRad, lon: -0.5.asRad)
         y = (lat: 0.asRad, lon: 0.5.asRad)
         XCTAssertEqual(try! vincenty.solveInverse(x, y).distance, 111319.491, accuracy: delta)
-        
+
         //Test Cardinals
         x = (lat: 0.0, lon: 0.0)
         y = (lat: pi/2,lon: 0.0) //north pole
@@ -110,23 +122,23 @@ final class VincentyTests: XCTestCase {
         (_, azimuths: (initialTrueTrack, finalTrueTrack)) = try! vincenty.solveInverse(x, y)
         XCTAssertEqual(initialTrueTrack, Double.pi/2, accuracy: delta)
         XCTAssertEqual(finalTrueTrack, Double.pi/2, accuracy: delta)
-           
+
         y = (lat: -pi/2,lon: 0.0) //south pole
         (_, azimuths: (initialTrueTrack, finalTrueTrack)) = try! vincenty.solveInverse(x, y)
         XCTAssertEqual(initialTrueTrack, Double.pi, accuracy: delta)
         XCTAssertEqual(finalTrueTrack, Double.pi, accuracy: delta)
-           
+
         y = (lat: 0.0,lon: -pi/2) //west
         (_, azimuths: (initialTrueTrack, finalTrueTrack)) = try! vincenty.solveInverse(x, y)
         XCTAssertEqual(initialTrueTrack, 3*Double.pi/2, accuracy: delta)
         XCTAssertEqual(finalTrueTrack, 3*Double.pi/2, accuracy: delta)
-        
+
     }
-    
+
     /// Test against A330 FMS
     let fmsAcc = 0.49 //within half nm or degree
     func testNavigationAccurracy() {
-        
+
         var x: (lat: Double, lon: Double), y: (lat: Double, lon: Double)
 
         //Urabi to Bumat
@@ -135,8 +147,8 @@ final class VincentyTests: XCTestCase {
         var (distance, azimuths: (initialTrueTrack, _)) = try! vincenty.solveInverse(x, y)
         XCTAssertEqual(distance.inNm, 197, accuracy: fmsAcc)
         XCTAssertEqual(initialTrueTrack.asDegrees, 058, accuracy: fmsAcc)
-        
-       
+
+
         //Dacey is N5933.6 / W12604.5
         x = (lat: (59+33.6/60).asRad, lon: -(126+04.5/60).asRad)
         //MCT is N5321.4 / W00215.7
@@ -149,9 +161,9 @@ final class VincentyTests: XCTestCase {
         print("vincenty: \(distance), geodesic: \(gDist), delta: \(fabs(distance - gDist))")
         XCTAssertEqual(distance, gDist, accuracy: 1e-3)
         XCTAssertEqual(initialTrueTrack.asDegrees, 036, accuracy: fmsAcc)
-        
+
     }
-    
+
 
     /// use geodesic as reference and test vincenty distance.
     func testAgainstGeodesic() {
