@@ -1,6 +1,6 @@
 # vincenty
 
-[![Swift Version](https://img.shields.io/badge/swift-5.5-blue.svg)](https://swift.org) 
+[![Swift Version](https://img.shields.io/badge/swift-5.7-blue.svg)](https://swift.org) 
 ![Platform](https://img.shields.io/badge/platform-macOS|linux--64-lightgray.svg)
 ![Build](https://github.com/dastrobu/vincenty/actions/workflows/ci.yaml/badge.svg)
 
@@ -51,7 +51,7 @@ There are no dependencies on macOS.
 ```swift
 let package = Package(
     dependencies: [
-        .package(url: "https://github.com/dastrobu/vincenty.git", from: "1.1.0"),
+        .package(url: "https://github.com/dastrobu/vincenty.git", from: "1.1.1"),
     ]
 )
 ```
