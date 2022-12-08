@@ -6,17 +6,17 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - uses: norio-nomura/action-swiftlint@3.2.1
   macos-test:
     strategy:
       matrix:
         swift-version:
-          - "5.5"
+          - "5.7"
     runs-on: macos-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: fwal/setup-swift@v1
+      - uses: actions/checkout@v3
+      - uses: swift-actions/setup-swift@v1
         with:
           swift-version: ${{ matrix.swift-version }}
       - run: swift test
@@ -24,6 +24,8 @@ jobs:
     strategy:
       matrix:
         swift-version:
+          - "5.7"
+          - "5.6"
           - "5.5"
           - "5.4"
           - "5.3"
@@ -33,10 +35,10 @@ jobs:
     runs-on: ubuntu-latest
     container: swift:${{ matrix.swift-version }}
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - run: swift test
   ios-build:
     runs-on: macos-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - run: xcodebuild -scheme vincenty -destination 'platform=iOS Simulator,name=iPhone 13'
