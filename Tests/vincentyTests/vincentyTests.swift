@@ -45,10 +45,10 @@ final class VincentyTests: XCTestCase {
     /// example code as shown in the Readme.md
     func testRreadmeExamples() {
         do {
-            let d = try! vincenty.distance((lat: Double.pi / 2, lon: 0), (lat: -Double.pi / 2, lon: 0))
+            _ = try! vincenty.distance((lat: Double.pi / 2, lon: 0), (lat: -Double.pi / 2, lon: 0))
         }
         do {
-            let (d, (a, b)) = try! solveInverse((lat: Double.pi / 2, lon: 0), (lat: -Double.pi / 2, lon: 0))
+            let (_, (_, _)) = try! solveInverse((lat: Double.pi / 2, lon: 0), (lat: -Double.pi / 2, lon: 0))
         }
 
     }
