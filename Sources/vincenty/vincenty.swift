@@ -41,7 +41,7 @@ public func distance(_ x: (lat: Double, lon: Double),
                      tol: Double = 1e-12,
                      maxIter: UInt = 200,
                      ellipsoid: (a: Double, f: Double) = wgs84) throws -> Double {
-    return try solveInverse(x, y, tol: tol, maxIter: maxIter, ellipsoid: ellipsoid).distance;
+    return try solveInverse(x, y, tol: tol, maxIter: maxIter, ellipsoid: ellipsoid).distance
 }
 
 
@@ -154,14 +154,16 @@ public func solveInverse(_ x: (lat: Double, lon: Double),
 
     let distance = B * a * (sigma - delta_sigma)
 
-    //Azimuth calculations:
+    // Azimuth calculations:
     let sinSq_sigma = q * q + p * p
     // note special handling of exactly antipodal points where sin²σ = 0 (due to discontinuity
     // atan2(0, 0) = 0 but atan2(ε, 0) = π/2 / 90°) - in which case bearing is always meridional,
     // due north (or due south!)
     // α = azimuths of the geodesic; α2 the direction P₁ P₂ produced
-    let a1 = abs(sinSq_sigma) < Double.leastNonzeroMagnitude ? 0 : atan2(cos_u_y * sin(lambda), cos_u_x * sin_u_y - sin_u_x * cos_u_y * cos(lambda))
-    let a2 = abs(sinSq_sigma) < Double.leastNonzeroMagnitude ? Double.pi : atan2(cos_u_x * sin(lambda), -sin_u_x * cos_u_y + cos_u_x * sin_u_y * cos(lambda))
+    let a1 = abs(sinSq_sigma) < Double.leastNonzeroMagnitude ? 0 :
+        atan2(cos_u_y * sin(lambda), cos_u_x * sin_u_y - sin_u_x * cos_u_y * cos(lambda))
+    let a2 = abs(sinSq_sigma) < Double.leastNonzeroMagnitude ? Double.pi :
+        atan2(cos_u_x * sin(lambda), -sin_u_x * cos_u_y + cos_u_x * sin_u_y * cos(lambda))
 
     let initialTrueTrack = abs(distance) < Double.leastNonzeroMagnitude ? Double.nan : wrap2pi(a1)
     let finalTrueTrack = abs(distance) < Double.leastNonzeroMagnitude ? Double.nan : wrap2pi(a2)
@@ -189,4 +191,3 @@ private func wrap2pi(_ radians: Double) -> Double {
 
     return ((2 * a * x / p).truncatingRemainder(dividingBy: p) + p).truncatingRemainder(dividingBy: p)
 }
-
