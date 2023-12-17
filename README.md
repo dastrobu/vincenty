@@ -51,7 +51,7 @@ There are no dependencies on macOS.
 ```swift
 let package = Package(
     dependencies: [
-        .package(url: "https://github.com/dastrobu/vincenty.git", from: "1.1.1"),
+        .package(url: "https://github.com/dastrobu/vincenty.git", from: "1.1.2"),
     ]
 )
 ```
