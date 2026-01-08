@@ -1,6 +1,6 @@
 # vincenty
 
-[![Swift Version](https://img.shields.io/badge/swift-5.9-blue.svg)](https://swift.org) 
+[![Swift Version](https://img.shields.io/badge/swift-6.0-blue.svg)](https://swift.org) 
 ![Platform](https://img.shields.io/badge/platform-macOS|linux--64-lightgray.svg)
 ![Build](https://github.com/dastrobu/vincenty/actions/workflows/ci.yaml/badge.svg)
 
