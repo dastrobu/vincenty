@@ -9,3 +9,5 @@ DerivedData/
 
 **.log
 **.pdf
+
+.swiftpm/

@@ -1,4 +1,4 @@
-// swift-tools-version:4.0
+// swift-tools-version:6.0
 
 import PackageDescription
 
@@ -20,7 +20,7 @@ let package = Package(
             name: "vincentyTests",
             dependencies: [
                 "vincenty",
-                "geodesic",
+                .product(name: "geodesic", package: "geodesic"),
             ]),
     ]
 )
