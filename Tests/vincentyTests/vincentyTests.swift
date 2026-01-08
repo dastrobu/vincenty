@@ -202,17 +202,4 @@ final class VincentyTests: XCTestCase {
 //        XCTAssertEqual(v, g, accuracy: 1e-3)
 //        XCTAssertEqual(v, 19944127.421, accuracy: 1e-3)
     }
-
-#if !os(macOS)
-    static var allTests = [
-        ("testAgainstGeodesic", testAgainstGeodesic),
-        ("testFailOnNearlyAntipodalPoints", testFailOnNearlyAntipodalPoints),
-        ("testGrs80", testGrs80),
-        ("testNearlyAntipodalPoints", testNearlyAntipodalPoints),
-        ("testPoles", testPoles),
-        ("testShortcutForEqualPoints", testShortcutForEqualPoints),
-        ("testSimpleConstants", testSimpleConstants),
-        ("testNavigationAccurracy", testNavigationAccurracy),
-    ]
-#endif
 }
