@@ -11,3 +11,5 @@ DerivedData/
 **.pdf
 
 .swiftpm/
+
+.DS_Store
