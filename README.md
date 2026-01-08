@@ -1,6 +1,6 @@
 # vincenty
 
-[![Swift Version](https://img.shields.io/badge/swift-6.0-blue.svg)](https://swift.org) 
+[![Swift Version](https://img.shields.io/badge/swift-6.2-blue.svg)](https://swift.org) 
 ![Platform](https://img.shields.io/badge/platform-macOS|linux--64-lightgray.svg)
 ![Build](https://github.com/dastrobu/vincenty/actions/workflows/ci.yaml/badge.svg)
 
@@ -84,6 +84,3 @@ is employed, but different parameters can be specified, e.g. for the
 
     try distance((lat: Double.pi / 2, lon: 0), (lat: -Double.pi / 2, lon: 0), 
                  ellipsoid (a: 6378137.0, f: 1/298.257222100882711))
-
-
-
