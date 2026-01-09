@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "vincenty"
-  s.version      = "1.1.4"
+  s.version      = "1.1.5"
   s.summary      = "Compute vincenty distance in Swift"
 
   # This description is used to generate tags and improve search results.
@@ -70,8 +70,8 @@ Pod::Spec.new do |s|
   # s.platform     = :ios, "5.0"
 
   #  When using multiple platforms
-  s.ios.deployment_target = "15.0"
-  s.osx.deployment_target = "12.0"
+  s.ios.deployment_target = "18.0"
+  s.osx.deployment_target = "14.0"
   # s.watchos.deployment_target = "2.0"
   # s.tvos.deployment_target = "9.0"
 
