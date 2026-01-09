@@ -29,8 +29,7 @@ private let pi = Double.pi
 ///   - y: second point with latitude and longitude in radiant.
 ///   - tol: tolerance for the computed distance (in meters)
 ///   - maxIter: maximal number of iterations
-///   - a: first ellipsoid parameter in meters (defaults to WGS-84 parameter)
-///   - f: second ellipsoid parameter in meters (defaults to WGS-84 parameter)
+///   - ellipsoid: ellipsoid parameters (a: major axis in meters, f: flattening) (defaults to WGS-84)
 ///
 /// - Returns: distance between `x` and `y` in meters.
 ///
@@ -54,8 +53,7 @@ public func distance(_ x: (lat: Double, lon: Double),
 ///   - y: second point with latitude and longitude in radiant.
 ///   - tol: tolerance for the computed distance (in meters)
 ///   - maxIter: maximal number of iterations
-///   - a: first ellipsoid parameter in meters (defaults to WGS-84 parameter)
-///   - f: second ellipsoid parameter in meters (defaults to WGS-84 parameter)
+///   - ellipsoid: ellipsoid parameters (a: major axis in meters, f: flattening) (defaults to WGS-84)
 ///
 /// - Returns: distance between `x` and `y` in meters. Azimuths (Initial and Final True Track) in radians.
 ///
