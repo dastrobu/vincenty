@@ -36,4 +36,4 @@ jobs:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v6
-      - run: xcodebuild -scheme vincenty -destination 'platform=iOS Simulator,name=iPhone 17'
+      - run: xcodebuild -scheme vincenty -destination 'platform=iOS Simulator,name=iPhone 16'
