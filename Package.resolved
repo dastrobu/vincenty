@@ -1,16 +1,33 @@
 {
-  "object": {
-    "pins": [
-      {
-        "package": "geodesic",
-        "repositoryURL": "https://github.com/dastrobu/geodesic.git",
-        "state": {
-          "branch": null,
-          "revision": "185ce8faf0e9859d86d547dc52645165afa03422",
-          "version": "1.4.0"
-        }
+  "originHash" : "c3cb5444765f5ca810ab34d1fe35c0a7db042b220864f4d7d1e286cd5686b94c",
+  "pins" : [
+    {
+      "identity" : "geodesic",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/dastrobu/geodesic.git",
+      "state" : {
+        "revision" : "185ce8faf0e9859d86d547dc52645165afa03422",
+        "version" : "1.4.0"
       }
-    ]
-  },
-  "version": 1
+    },
+    {
+      "identity" : "swift-docc-plugin",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/apple/swift-docc-plugin",
+      "state" : {
+        "revision" : "3e4f133a77e644a5812911a0513aeb7288b07d06",
+        "version" : "1.4.5"
+      }
+    },
+    {
+      "identity" : "swift-docc-symbolkit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/swiftlang/swift-docc-symbolkit",
+      "state" : {
+        "revision" : "b45d1f2ed151d057b54504d653e0da5552844e34",
+        "version" : "1.0.0"
+      }
+    }
+  ],
+  "version" : 3
 }
