@@ -84,3 +84,7 @@ is employed, but different parameters can be specified, e.g. for the
 
     try distance((lat: Double.pi / 2, lon: 0), (lat: -Double.pi / 2, lon: 0), 
                  ellipsoid (a: 6378137.0, f: 1/298.257222100882711))
+
+## Docs
+
+Read the generated [docs](https://dastrobu.github.io/vincenty/documentation/vincenty/).
