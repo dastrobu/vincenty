@@ -1,0 +1,32 @@
+name: generate-documentation
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  generate-docs:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: swift-actions/setup-swift@v1
+        with:
+          swift-version: "5.9"
+      - name: generate-documentation
+        # https://apple.github.io/swift-docc-plugin/documentation/swiftdoccplugin/generating-documentation-for-hosting-online/
+        run: >
+          swift package
+          --allow-writing-to-directory ./docs
+          generate-documentation
+          --output-path ./docs
+          --hosting-base-path vincenty
+          --disable-indexing
+          --transform-for-static-hosting
+      - name: generate theme-settings.json
+        run: echo '' > theme-settings.json
+        working-directory: docs
+      - uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./docs
